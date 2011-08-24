@@ -1,0 +1,59 @@
+# % macro, P, Device prefix
+# % macro, PORT, Asyn port name
+# % macro, name, Object and gui association name
+# % gui, $(name), edm, procServControl.edl, procServ=$(P)
+
+record(stringin, "$(P):IOCNAME") {
+  field(DESC, "IOC Name")
+}
+
+#% archiver 10 Monitor
+record(bi, "$(P):AUTORESTART") {
+  field(DESC, "Autorestart readback")
+  field(ZNAM, "Off")  
+  field(ONAM, "On")  
+}
+
+#% archiver 10 Monitor
+record(mbbi, "$(P):STATUS") {
+  field(DESC, "Process status")
+  field(ZRST, "Running")
+  field(ONST, "Shutdown")
+  field(TWST, "procServ Stopped")
+  field(ONSV, "MAJOR")
+  field(TWSV, "MAJOR")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+}
+
+#% archiver 10 Monitor
+record(busy, "$(P):TOGGLE") {
+  field(DESC, "Autorestart toggle")
+}
+
+#% archiver 10 Monitor
+record(busy, "$(P):START") {
+  field(DESC, "Start IOC")
+}
+
+#% archiver 10 Monitor
+record(busy, "$(P):STOP") {
+  field(DESC, "Stop IOC")
+}
+
+#% archiver 10 Monitor
+record(busy, "$(P):RESTART") {
+  field(DESC, "Restart IOC")
+}
+
+record(waveform, "$(P):IOCOUT") {
+    field(DESC, "Last 20 lines of IOC output")
+    field(NELM, "5120")
+    field(FTVL, "UCHAR")
+}
+
+record(stringin, "$(P):PORT") {
+  field(VAL, "$(PORT)")
+  field(PINI, "YES")
+}
