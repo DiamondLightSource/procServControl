@@ -1,3 +1,7 @@
 <?xml version="1.0" ?>
 <components arch="linux-x86">
+	<asyn.AsynIP name="port1" port="localhost:7001"/>
+	<asyn.AsynIP name="port2" port="localhost:7002"/>
+	<procServControl.procServControl P="BLxxI-TS-IOC-01" PORT="port1" name="BLxxI-TS-IOC-01"/>
+	<procServControl.procServControl P="BLxxI-TS-IOC-02" PORT="port2" name="BLxxI-TS-IOC-02"/>
 </components>

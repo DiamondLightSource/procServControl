@@ -1,0 +1,500 @@
+4 0 1
+beginScreenProperties
+major 4
+minor 0
+release 1
+x 643
+y 590
+w 733
+h 522
+font "arial-medium-r-18.0"
+ctlFont "arial-medium-r-18.0"
+btnFont "arial-medium-r-18.0"
+fgColor index 14
+bgColor index 3
+textColor index 14
+ctlFgColor1 index 14
+ctlFgColor2 index 0
+ctlBgColor1 index 0
+ctlBgColor2 index 14
+topShadowColor index 0
+botShadowColor index 14
+title "procServ - $(procServ)"
+showGrid
+snapToGrid
+gridSize 5
+disableScroll
+endScreenProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 5
+y 45
+w 720
+h 440
+lineColor index 14
+fill
+fillColor index 5
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 735
+h 30
+
+beginGroup
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 735
+h 30
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 0
+y 3
+w 735
+h 24
+lineColor index 11
+fillColor index 0
+numPoints 3
+xPoints {
+  0 0
+  1 735
+  2 735
+}
+yPoints {
+  0 27
+  1 27
+  2 3
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 0
+y 3
+w 735
+h 24
+font "arial-bold-r-16.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 48
+value {
+  "procServ Control - $(procServ)"
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 0
+y 3
+w 735
+h 24
+lineColor index 1
+fillColor index 0
+numPoints 3
+xPoints {
+  0 0
+  1 0
+  2 735
+}
+yPoints {
+  0 27
+  1 3
+  2 3
+}
+endObjectProperties
+
+endGroup
+
+endObjectProperties
+
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 650
+y 490
+w 75
+h 25
+fgColor index 46
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+label "EXIT"
+font "arial-medium-r-18.0"
+3d
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 5
+y 35
+w 48
+h 14
+font "arial-medium-r-12.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 8
+value {
+  "  Status  "
+}
+autoSize
+border
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 315
+y 55
+w 100
+h 25
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "AutoRestart"
+}
+endObjectProperties
+
+# (Menu Mux)
+object menuMuxClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 2000
+y 240
+w 150
+h 45
+fgColor index 14
+bgColor index 0
+topShadowColor index 0
+botShadowColor index 14
+controlPv "$(CS):CSTYPE"
+font "arial-medium-r-18.0"
+numItems 2
+symbolTag {
+  0 "Cryostream"
+  1 "Phenix"
+}
+symbol0 {
+  0 "purge"
+  1 "purge"
+}
+value0 {
+  0 "Purge"
+  1 "Warm"
+}
+symbol1 {
+  0 "gas"
+  1 "gas"
+}
+value1 {
+  0 "Gas"
+  1 "Sample"
+}
+symbol2 {
+  0 "evap"
+  1 "evap"
+}
+value2 {
+  0 "Evap"
+  1 "Shield"
+}
+symbol3 {
+  0 "gasflow"
+  1 "gasflow"
+}
+value3 {
+  0 "Gas Flow"
+  1 "Cryo Speed"
+}
+symbol4 {
+  0 "evapadjust"
+  1 "evapadjust"
+}
+value4 {
+  0 "Evap Adjust"
+  1 "Evap Adjust"
+}
+symbol5 {
+  0 "cstype"
+  1 "cstype"
+}
+value5 {
+  0 "Oxford Cryostream"
+  1 "Phenix Cryostat"
+}
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 415
+y 55
+w 70
+h 25
+controlPv "$(procServ):AUTORESTART"
+fgColor index 16
+fgAlarm
+bgColor index 10
+fill
+font "arial-bold-r-14.0"
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 90
+y 55
+w 220
+h 25
+controlPv "$(procServ):IOCNAME"
+fgColor index 16
+fgAlarm
+bgColor index 10
+fill
+font "arial-bold-r-14.0"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 10
+y 55
+w 80
+h 25
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "IOC Name"
+}
+endObjectProperties
+
+# (Button)
+object activeButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 490
+y 55
+w 70
+h 25
+fgColor index 25
+onColor index 4
+offColor index 3
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(procServ):TOGGLE"
+indicatorPv "$(procServ):TOGGLE"
+onLabel "Toggle"
+offLabel "Toggle"
+labelType "literal"
+3d
+font "arial-bold-r-14.0"
+objType "controls"
+visPv "$(procServ):STATUS"
+visMin "0"
+visMax "1"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 10
+y 85
+w 80
+h 25
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "IOC status"
+}
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 90
+y 85
+w 220
+h 25
+controlPv "$(procServ):STATUS"
+fgColor index 16
+fgAlarm
+bgColor index 10
+fill
+font "arial-bold-r-14.0"
+endObjectProperties
+
+# (Button)
+object activeButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 315
+y 85
+w 95
+h 25
+fgColor index 19
+onColor index 4
+offColor index 3
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(procServ):START"
+onLabel "Start"
+offLabel "Start"
+labelType "literal"
+3d
+font "arial-bold-r-14.0"
+objType "controls"
+visPv "$(procServ):STATUS"
+visMin "1"
+visMax "2"
+endObjectProperties
+
+# (Button)
+object activeButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 490
+y 85
+w 70
+h 25
+fgColor index 24
+onColor index 4
+offColor index 3
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(procServ):RESTART"
+onLabel "Restart"
+offLabel "Restart"
+labelType "literal"
+3d
+font "arial-bold-r-14.0"
+objType "controls"
+visPv "$(procServ):STATUS"
+visMin "0"
+visMax "1"
+endObjectProperties
+
+# (Button)
+object activeButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 415
+y 85
+w 70
+h 25
+fgColor index 24
+onColor index 4
+offColor index 3
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(procServ):STOP"
+onLabel "Stop"
+offLabel "Stop"
+labelType "literal"
+3d
+font "arial-bold-r-14.0"
+objType "controls"
+visPv "$(procServ):STATUS"
+visMin "0"
+visMax "1"
+endObjectProperties
+
+# (multiLineTextUpdate)
+object multiLineTextUpdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 10
+y 115
+w 710
+h 365
+controlPv "$(procServ):IOCOUT"
+fgColour index 16
+fgAlarm
+bgColour index 10
+fill
+font "courier-medium-r-12.0"
+endObjectProperties
+

@@ -11,8 +11,7 @@ include $(TOP)/configure/CONFIG
 # In a Diamond Support Module, install
 # templates like this
 #
-#DB += motor.template
-#DB += basic_motor.template
+DB += procServControl.template
 
 #----------------------------------------------------
 # In a Diamond IOC Application, build db files from
