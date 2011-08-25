@@ -4,7 +4,7 @@
 # % macro, name, Object and gui association name
 # % gui, $(name), edm, procServControl.edl, procServ=$(P)
 # # \file
-# # This template allows monitoring of an IOC running through procServ in 
+# # This template allows monitoring of an IOC running through procServ in
 # # EPICS. It should be run in a separate IOC, but needs to be running on the
 # # same machine as procServ as procServ only allows localhost access
 # # \image html procServ.png "Gui snapshot"
@@ -15,16 +15,16 @@ record(stringin, "$(P):IOCNAME") {
 #% archiver 10 Monitor
 record(bi, "$(P):AUTORESTART") {
   field(DESC, "Autorestart readback")
-  field(ZNAM, "Off")  
-  field(ONAM, "On")  
+  field(ZNAM, "Off")
+  field(ONAM, "On")
 }
 
 record(bo, "$(P):SHOWOUT") {
   field(DESC, "Show IOC output")
-  field(ZNAM, "No")  
-  field(ONAM, "Yes")  
-  field(VAL, "$(SHOWOUT=1)")  
-  field(PINI, "YES")  
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL, "$(SHOWOUT=1)")
+  field(PINI, "YES")
 }
 
 
