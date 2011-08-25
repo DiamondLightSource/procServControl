@@ -16,6 +16,7 @@ option +r;
 
 /* Inputs */
 string port;			assign port			to "{P}:PORT";
+int showout;			assign showout		to "{P}:SHOWOUT.VAL"; monitor showout;
 
 /* Outputs */
 string iocname;			assign iocname		to "{P}:IOCNAME";
@@ -80,6 +81,7 @@ ss ssUserInput {
 		}
 		
 		when(efTestAndClear(startMon) && (start == 1)) {
+			/* If we are shutdown then send CTRL-X to start */
 			if (status == SHUTDOWN) {
 				%% writeControlChar(pVar, "\x18");
 			}			
@@ -88,6 +90,8 @@ ss ssUserInput {
 		} state MONITORINPUTS
 		
 		when(efTestAndClear(stopMon) && (stop == 1)) {
+			/* If we are running, then make sure autorestart is off, if it isn't
+			 * send CTRL-T, then send CTRL-X to stop */		
 			if (status == RUNNING) {		
 				if (autorestart == 1) {
 					%% writeControlChar(pVar, "\x14");
@@ -99,6 +103,8 @@ ss ssUserInput {
 		} state MONITORINPUTS
 		
 		when(efTestAndClear(restartMon) && (restart == 1)) {
+			/* If we are running, then make sure autorestart is on, if it isn't
+			 * send CTRL-T, then send CTRL-X to restart */				
 			if (status == RUNNING) {		
 				if (autorestart == 0) {
 					%% writeControlChar(pVar, "\x14");
@@ -110,6 +116,7 @@ ss ssUserInput {
 		} state MONITORINPUTS
 
 		when(efTestAndClear(toggleMon) && (toggle == 1)) {
+			/* If we are running, then send CTRL-T to toggle autorestart */
 			if (status == RUNNING) {		
 				%% writeControlChar(pVar, "\x14");
 			}
@@ -173,37 +180,48 @@ ss ssProcServInput {
 	
 /* C functions */
 %{
+/* Create an asynUser and set it up using the port name */
 static void createAsynUser(struct UserVar *pVar) {
 	int i;
+	/* Increment the global state machine counter */
 	pVar->stateIndex = stateIndexGlobal++;
 	if (stateIndexGlobal > NSTATEMACHINES) {
 		printf("***Error: too many procServ state machines defined\n");
 		return;
 	}
+	/* Connect the port */
 	asynUser *pasynUser = NULL;
 	pasynOctetSyncIO->connect(pVar->port, 0, &pasynUser, NULL);
 	pasynOctetSyncIO->setInputEos(pasynUser, "\r\n", 2);
 	pasynOctetSyncIO->setOutputEos(pasynUser, "", 0);			
 	pasynUsers[pVar->stateIndex] = pasynUser;	
+	/* Clear output lines */
 	for (i = 0; i < NLINES; i++) {
 		strcpy(pVar->iocLine[i], "");				
 	}			
 	pVar->iocLineI = 0;	
 }			
 
+/* Get the next line of IOC output and process it */
 static void getNextLine(struct UserVar *pVar) {
-	asynUser *pasynUser = pasynUsers[pVar->stateIndex];
 	char buffer[LINELENGTH];
 	char temp[LINELENGTH];
 	size_t bytes;
 	int eomReason;
 	int i, index, yesNo;
 	
-	/* Check asynUser is connected */
+	/* By default there is nothing to do on return */
+   	pVar->lastcommand = NONE;	
+	
+	/* Check that asynUser exists */
+	if (pVar->stateIndex >= NSTATEMACHINES) return;
+	asynUser *pasynUser = pasynUsers[pVar->stateIndex];
+	if (pasynUser == NULL) return;	
+		
+	/* Check asynUser is connected */	
 	pasynManager->isConnected(pasynUser, &yesNo);
 	if (yesNo == 0) {
 		if (pVar->status == PROCSERVSTOPPED) {
-	    	pVar->lastcommand = NONE;
 			sleep(1);		    	
 	    } else {
 		    pVar->status = PROCSERVSTOPPED;
@@ -211,30 +229,39 @@ static void getNextLine(struct UserVar *pVar) {
 	    }
 		return;
 	} else if (pVar->status == PROCSERVSTOPPED) {
-		/* need to set the right eos */
+		/* need to set the right eos if the port has just connected */
 		pasynOctetSyncIO->setInputEos(pasynUser, "\r\n", 2);
 		pasynOctetSyncIO->setOutputEos(pasynUser, "", 0);	
+		/* Note we don't set lastcommand as the status is just being used as 
+		 * a flag so we don't set Eos many times. If it has just connected
+		 * procServ will tell us the status in 4 lines time anyway... */
 		pVar->status = SHUTDOWN;	
 	}
 	
-	/* read from the asyn port and NULL terminate it, then copy to lines */
+	/* read from the asyn port, if we fail (no data) just return */
     if (pasynOctetSyncIO->read(pasynUser, buffer, LINELENGTH, 0.1, &bytes, &eomReason)) {
-    	pVar->lastcommand = NONE;
     	return;    
     }
+    
+    /* NULL terminate the buffer and put it in the right place */
     buffer[LINELENGTH-1] = '\0';
-	strcpy(pVar->iocLine[pVar->iocLineI], buffer);
-	    
-    /* put the \n joined strings into the iocout array */
+	strcpy(pVar->iocLine[pVar->iocLineI], buffer);		    
 	pVar->iocLineI = (pVar->iocLineI + 1) % NLINES;
-	bytes = 0;
-	for (i = 0; i < NLINES; i++) {
-		index = (pVar->iocLineI + i)%NLINES;
-		strcpy(pVar->iocout + bytes, pVar->iocLine[index]);
-		bytes += strlen(pVar->iocLine[index]);
-		sprintf(pVar->iocout + bytes++, "\n");
-	}            	
-	pVar->lastcommand = IOCOUT;    
+	
+	/* If we are told to show the result, copy the lines in the right order to
+	 * iocout */
+	if (pVar->showout) {
+		bytes = 0;
+	    /* Start with the line after the one just written (the oldest line) */
+    	for (i = 0; i < NLINES; i++) {
+    		index = (pVar->iocLineI + i)%NLINES;
+    		strcpy(pVar->iocout + bytes, pVar->iocLine[index]);
+    		bytes += strlen(pVar->iocLine[index]);
+    		/* Join with a \n */
+    		sprintf(pVar->iocout + bytes++, "\n");
+    	}            	
+    	pVar->lastcommand = IOCOUT;    
+	}
 	
 	/* If it was a procServ command, parse it */ 
     if (buffer[0] == '@' && buffer[1] == '@' && buffer[2] == '@') {
@@ -288,17 +315,21 @@ static void getNextLine(struct UserVar *pVar) {
     }
 }    
    	
+/* Write a control char to procServ */   	
 static void writeControlChar(struct UserVar *pVar, const char *controlChar) {
 	size_t bytes;
-	asynUser *pasynUser = pasynUsers[pVar->stateIndex];
 	int yesNo;
+	
+	/* Check that asynUser exists */
+	if (pVar->stateIndex >= NSTATEMACHINES) return;
+	asynUser *pasynUser = pasynUsers[pVar->stateIndex];
+	if (pasynUser == NULL) return;		
 	
 	/* Check asynUser is connected */
 	pasynManager->isConnected(pasynUser, &yesNo);
-	if (yesNo == 0) {
-		return;
-	}	
+	if (yesNo == 0) return;
 	
+	/* Write control char to procServ */
 	pasynOctetSyncIO->write(pasynUser, controlChar, 1, 1.0, &bytes);
 }	
 

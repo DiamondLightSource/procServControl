@@ -2,7 +2,8 @@
 \mainpage procServControl EPICS Support Module
 \section intro_sec Introduction
 procServControl provides a template and state machine that monitors procServ
-to see what the status of the IOC is.
+to see what the status of the IOC is. For more details look at 
+procServControl.template
 
 \section build_sec Build Instructions 
 - \subpage build_instructions_example
