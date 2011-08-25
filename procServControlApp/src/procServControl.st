@@ -265,10 +265,12 @@ static void getNextLine(struct UserVar *pVar) {
 	
 	/* If it was a procServ command, parse it */ 
     if (buffer[0] == '@' && buffer[1] == '@' && buffer[2] == '@') {
+    	/*printf("%s: {%s}\n", pVar->port, buffer);*/
     	/* grab ioc name */
     	if (sscanf(buffer, "@@@ Child \"%s started as: %s", pVar->iocname, temp) == 2) {
     		pVar->iocname[strlen(pVar->iocname)-1] = '\0';
     		pVar->lastcommand = IOCNAME;
+	    	/*printf("iocname: %s\n", pVar->iocname);*/    		
     		return; 
     	}
     	/* grab current status */
@@ -278,19 +280,23 @@ static void getNextLine(struct UserVar *pVar) {
     		} else if (strcmp(temp, "is") == 0) {
     			pVar->status = SHUTDOWN;
     		} else {
+	    		/*printf("status (invalid): %s\n", temp);*/ 
     			return;
     		}
+	    	/*printf("status (1): (%s) %d\n", temp, pVar->status);*/    		    		
     		pVar->lastcommand = STATUS;    		
     		return; 
     	}
     	if (sscanf(buffer, "@@@ Restarting child %s", temp)) {
     		pVar->lastcommand = STATUS;
    			pVar->status = RUNNING;
+	    	/*printf("status (2): %d\n", pVar->status);*/    		    		   			
     		return; 
     	}
     	if (sscanf(buffer, "@@@ Child process is shutting %s", temp)) {
     		pVar->lastcommand = STATUS;
    			pVar->status = SHUTDOWN;
+	    	/*printf("status (3): %d\n", pVar->status);*/    		    		   			   			
     		return; 
     	}
     	/* grab current autorestart */
@@ -301,6 +307,7 @@ static void getNextLine(struct UserVar *pVar) {
     		} else {
     			pVar->autorestart = 0;
     		}
+	    	/*printf("autorestart (1): %d\n", pVar->autorestart);*/    		    		   			    		
     		return; 
     	}    
     	if (sscanf(buffer, "@@@ Use ^X to kill the child, auto restart is %s", temp)) {
@@ -310,6 +317,7 @@ static void getNextLine(struct UserVar *pVar) {
     		} else {
     			pVar->autorestart = 0;
     		}
+	    	/*printf("autorestart (2): %d\n", pVar->autorestart);*/ 		    		   			    		    		
     		return; 
     	}      		    	
     }
