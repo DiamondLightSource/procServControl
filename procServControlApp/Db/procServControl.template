@@ -1,8 +1,13 @@
 # % macro, P, Device prefix
 # % macro, PORT, Asyn port name
+# % macro, SHOWOUT, Set this to 0 to disable the IOC output display
 # % macro, name, Object and gui association name
 # % gui, $(name), edm, procServControl.edl, procServ=$(P)
-
+# # \file
+# # This template allows monitoring of an IOC running through procServ in 
+# # EPICS. It should be run in a separate IOC, but needs to be running on the
+# # same machine as procServ as procServ only allows localhost access
+# # \image html procServ.png "Gui snapshot"
 record(stringin, "$(P):IOCNAME") {
   field(DESC, "IOC Name")
 }
@@ -13,6 +18,15 @@ record(bi, "$(P):AUTORESTART") {
   field(ZNAM, "Off")  
   field(ONAM, "On")  
 }
+
+record(bo, "$(P):SHOWOUT") {
+  field(DESC, "Show IOC output")
+  field(ZNAM, "No")  
+  field(ONAM, "Yes")  
+  field(VAL, "$(SHOWOUT=1)")  
+  field(PINI, "YES")  
+}
+
 
 #% archiver 10 Monitor
 record(mbbi, "$(P):STATUS") {
