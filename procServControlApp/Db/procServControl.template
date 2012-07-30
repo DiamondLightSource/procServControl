@@ -1,6 +1,7 @@
 # % macro, P, Device prefix
 # % macro, PORT, Asyn port name
 # % macro, SHOWOUT, Set this to 0 to disable the IOC output display
+# % macro, MANUALSTART, Set this to # if the IOC is manually started. This changes the severity of STATUS
 # % macro, name, Object and gui association name
 # % gui, $(name=), edm, procServControl.edl, procServ=$(P)
 # # \file
@@ -29,12 +30,13 @@ record(bo, "$(P):SHOWOUT") {
 
 
 #% archiver 10 Monitor
+# % gui, $(name=), sevr
 record(mbbi, "$(P):STATUS") {
   field(DESC, "Process status")
   field(ZRST, "Running")
   field(ONST, "Shutdown")
   field(TWST, "procServ Stopped")
-  field(ONSV, "MAJOR")
+$(MANUALSTART=)  field(ONSV, "MAJOR")
   field(TWSV, "MAJOR")
   field(ZRVL, "0")
   field(ONVL, "1")
