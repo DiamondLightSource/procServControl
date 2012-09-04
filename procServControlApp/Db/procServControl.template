@@ -30,6 +30,8 @@ record(bo, "$(P):SHOWOUT") {
 
 
 #% archiver 10 Monitor
+# %gdatag,template,simpleMbbinary,$(P),Current status for IOC $(P)
+# %gdatag,mbbinary,ro,$(P),RECORD,PV
 # % gui, $(name=), sevr
 record(mbbi, "$(P):STATUS") {
   field(DESC, "Process status")
