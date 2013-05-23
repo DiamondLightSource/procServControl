@@ -13,9 +13,9 @@ $(foreach dir, $(filter-out configure,$(DIRS)),$(eval $(call DIR_template,$(dir)
 iocBoot_DEPEND_DIRS += $(filter %App,$(DIRS))
 
 # Comment out the following line to creation of example iocs and documentation
-DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard etc))
+#DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard etc))
 # Comment out the following line to disable building of example iocs
-DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocs))
+#DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocs))
 include $(TOP)/configure/RULES_TOP
 
 
