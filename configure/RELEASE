@@ -25,7 +25,7 @@ SUPPORT=/dls_sw/prod/R3.14.12.3/support
 # If using the sequencer, point SNCSEQ at its top directory:
 SNCSEQ=$(SUPPORT)/seq/2-1-15
 ASYN=$(SUPPORT)/asyn/4-21
-BUSY=$(SUPPORT)/busy/1-6
+BUSY=$(SUPPORT)/busy/1-5
 
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=/dls_sw/epics/R3.14.12.3/base
