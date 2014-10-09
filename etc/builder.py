@@ -1,11 +1,12 @@
 from iocbuilder import AutoSubstitution, Device
 from iocbuilder.modules.asyn import Asyn
 from iocbuilder.modules.seq import Seq
+from iocbuilder.modules.busy import Busy
 
 class procServControl(AutoSubstitution, Device):
     '''Controls the procServ for an IOC'''
 
-    Dependencies = (Asyn,Seq)
+    Dependencies = (Asyn,Seq,Busy)
     LibFileList = ["procServControl"]
     DbdFileList = ["procServControl"]
 
