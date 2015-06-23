@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <display typeId="org.csstudio.opibuilder.Display" version="1.0.0">
   <show_close_button>true</show_close_button>
   <rules />
@@ -19,17 +19,17 @@
     <min_height>-1</min_height>
   </auto_scale_widgets>
   <background_color>
-    <color name="Canvas" red="200" green="200" blue="200" />
+    <color blue="200" green="200" name="Canvas" red="200" />
   </background_color>
   <width>800</width>
   <x>-1</x>
-  <name></name>
+  <name />
   <grid_space>5</grid_space>
   <show_ruler>true</show_ruler>
   <y>-1</y>
   <snap_to_geometry>true</snap_to_geometry>
   <foreground_color>
-    <color red="192" green="192" blue="192" />
+    <color blue="192" green="192" red="192" />
   </foreground_color>
   <actions hook="false" hook_all="false" />
   <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
@@ -62,7 +62,7 @@ $(pv_value)</tooltip>
     <pv_name>$(PROCSERV):IOCNAME</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <precision_from_pv>false</precision_from_pv>
     <widget_type>Text Update</widget_type>
@@ -70,23 +70,23 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <format_type>0</format_type>
     <background_color>
-      <color red="64" green="64" blue="64" />
+      <color blue="64" green="64" name="Monitor: BG" red="64" />
     </background_color>
     <width>200</width>
     <x>95</x>
     <name>IOC Name</name>
     <y>15</y>
     <foreground_color>
-      <color red="100" green="255" blue="100" />
+      <color blue="96" green="255" name="Monitor: FG" red="96" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
-      <fontdata fontName="Nimbus Sans L" height="11" style="1" />
+      <opifont.name fontName="Arial" height="11" style="1">Default Bold</opifont.name>
     </font>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <border_style>0</border_style>
-    <tooltip></tooltip>
+    <tooltip />
     <horizontal_alignment>0</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
@@ -105,24 +105,25 @@ $(pv_value)</tooltip>
     <visible>true</visible>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <widget_type>Label</widget_type>
     <wrap_words>false</wrap_words>
     <background_color>
-      <color red="255" green="255" blue="255" />
+      <color blue="200" green="200" name="Canvas" red="200" />
     </background_color>
     <width>80</width>
     <x>5</x>
     <name>Label</name>
     <y>18</y>
     <foreground_color>
-      <color red="0" green="0" blue="0" />
+      <color blue="0" green="0" name="Text: FG" red="0" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
       <opifont.name fontName="Arial" height="11" style="0">Default</opifont.name>
     </font>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
     <border_style>0</border_style>
@@ -154,7 +155,7 @@ $(pv_value)</tooltip>
     <pv_name>$(PROCSERV):STATUS</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <precision_from_pv>false</precision_from_pv>
     <widget_type>Text Update</widget_type>
@@ -162,23 +163,23 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <format_type>0</format_type>
     <background_color>
-      <color red="64" green="64" blue="64" />
+      <color blue="64" green="64" name="Monitor: BG" red="64" />
     </background_color>
     <width>200</width>
     <x>95</x>
     <name>IOC Status</name>
     <y>45</y>
     <foreground_color>
-      <color red="100" green="255" blue="100" />
+      <color blue="96" green="255" name="Monitor: FG" red="96" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
-      <fontdata fontName="Nimbus Sans L" height="11" style="1" />
+      <opifont.name fontName="Arial" height="11" style="1">Default Bold</opifont.name>
     </font>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <border_style>0</border_style>
-    <tooltip></tooltip>
+    <tooltip />
     <horizontal_alignment>0</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
@@ -197,24 +198,25 @@ $(pv_value)</tooltip>
     <visible>true</visible>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <widget_type>Label</widget_type>
     <wrap_words>false</wrap_words>
     <background_color>
-      <color red="255" green="255" blue="255" />
+      <color blue="200" green="200" name="Canvas" red="200" />
     </background_color>
     <width>80</width>
     <x>5</x>
     <name>Label_1</name>
     <y>48</y>
     <foreground_color>
-      <color red="0" green="0" blue="0" />
+      <color blue="0" green="0" name="Text: FG" red="0" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
       <opifont.name fontName="Arial" height="11" style="0">Default</opifont.name>
     </font>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
     <border_style>0</border_style>
@@ -246,7 +248,7 @@ $(pv_value)</tooltip>
     <pv_name>$(PROCSERV):AUTORESTART</pv_name>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <precision_from_pv>true</precision_from_pv>
     <widget_type>Text Update</widget_type>
@@ -254,23 +256,23 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <format_type>0</format_type>
     <background_color>
-      <color red="64" green="64" blue="64" />
+      <color blue="64" green="64" name="Monitor: BG" red="64" />
     </background_color>
     <width>76</width>
     <x>400</x>
     <name>Auto Restart</name>
     <y>15</y>
     <foreground_color>
-      <color red="100" green="255" blue="100" />
+      <color blue="96" green="255" name="Monitor: FG" red="96" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
-      <fontdata fontName="Nimbus Sans L" height="11" style="1" />
+      <opifont.name fontName="Arial" height="11" style="1">Default Bold</opifont.name>
     </font>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <border_style>0</border_style>
-    <tooltip></tooltip>
+    <tooltip />
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
@@ -289,24 +291,25 @@ $(pv_value)</tooltip>
     <visible>true</visible>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <widget_type>Label</widget_type>
     <wrap_words>false</wrap_words>
     <background_color>
-      <color red="255" green="255" blue="255" />
+      <color blue="200" green="200" name="Canvas" red="200" />
     </background_color>
     <width>80</width>
     <x>310</x>
     <name>Label_2</name>
     <y>18</y>
     <foreground_color>
-      <color red="0" green="0" blue="0" />
+      <color blue="0" green="0" name="Text: FG" red="0" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
       <opifont.name fontName="Arial" height="11" style="0">Default</opifont.name>
     </font>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
     <toggle_button>false</toggle_button>
@@ -331,16 +334,16 @@ $(pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <image></image>
+    <image />
     <visible>true</visible>
     <pv_name>$(PROCSERV):TOGGLE</pv_name>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <widget_type>Action Button</widget_type>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
-      <color name="Canvas" red="200" green="200" blue="200" />
+      <color blue="205" green="205" name="Controller: BG" red="205" />
     </background_color>
     <width>80</width>
     <x>495</x>
@@ -348,15 +351,15 @@ $(pv_value)</tooltip>
     <y>18</y>
     <style>0</style>
     <foreground_color>
-      <color red="0" green="0" blue="210" />
+      <color blue="192" green="0" name="Controller: FG" red="0" />
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="WRITE_PV">
         <pv_name>$(pv_name)</pv_name>
         <value>1</value>
         <timeout>10</timeout>
-        <confirm_message></confirm_message>
-        <description></description>
+        <confirm_message />
+        <description />
       </action>
     </actions>
     <font>
@@ -386,16 +389,16 @@ $(pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <image></image>
+    <image />
     <visible>true</visible>
     <pv_name>$(PROCSERV):RESTART</pv_name>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <widget_type>Action Button</widget_type>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
-      <color name="Canvas" red="200" green="200" blue="200" />
+      <color blue="205" green="205" name="Controller: BG" red="205" />
     </background_color>
     <width>80</width>
     <x>495</x>
@@ -403,15 +406,15 @@ $(pv_value)</tooltip>
     <y>48</y>
     <style>0</style>
     <foreground_color>
-      <color red="0" green="0" blue="210" />
+      <color blue="192" green="0" name="Controller: FG" red="0" />
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="WRITE_PV">
         <pv_name>$(pv_name)</pv_name>
         <value>1</value>
         <timeout>10</timeout>
-        <confirm_message></confirm_message>
-        <description></description>
+        <confirm_message />
+        <description />
       </action>
     </actions>
     <font>
@@ -427,7 +430,7 @@ $(pv_value)</tooltip>
 $(pv_value)</tooltip>
     <push_action_index>0</push_action_index>
     <rules>
-      <rule name="Visibility" prop_id="visible" out_exp="false">
+      <rule name="Visibility" out_exp="false" prop_id="visible">
         <exp bool_exp="pv0!=0">
           <value>false</value>
         </exp>
@@ -448,16 +451,16 @@ $(pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <image></image>
+    <image />
     <visible>true</visible>
     <pv_name>$(PROCSERV):STOP</pv_name>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <widget_type>Action Button</widget_type>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
-      <color name="Canvas" red="200" green="200" blue="200" />
+      <color blue="205" green="205" name="Controller: BG" red="205" />
     </background_color>
     <width>80</width>
     <x>398</x>
@@ -465,15 +468,15 @@ $(pv_value)</tooltip>
     <y>48</y>
     <style>0</style>
     <foreground_color>
-      <color red="0" green="0" blue="210" />
+      <color blue="192" green="0" name="Controller: FG" red="0" />
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="WRITE_PV">
         <pv_name>$(pv_name)</pv_name>
         <value>1</value>
         <timeout>10</timeout>
-        <confirm_message></confirm_message>
-        <description></description>
+        <confirm_message />
+        <description />
       </action>
     </actions>
     <font>
@@ -489,7 +492,7 @@ $(pv_value)</tooltip>
 $(pv_value)</tooltip>
     <push_action_index>0</push_action_index>
     <rules>
-      <rule name="Visibility" prop_id="visible" out_exp="false">
+      <rule name="Visibility" out_exp="false" prop_id="visible">
         <exp bool_exp="pv0==0">
           <value>false</value>
         </exp>
@@ -510,16 +513,16 @@ $(pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <image></image>
+    <image />
     <visible>true</visible>
     <pv_name>$(PROCSERV):START</pv_name>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <widget_type>Action Button</widget_type>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
-      <color name="Canvas" red="200" green="200" blue="200" />
+      <color blue="205" green="205" name="Controller: BG" red="205" />
     </background_color>
     <width>80</width>
     <x>310</x>
@@ -527,15 +530,15 @@ $(pv_value)</tooltip>
     <y>48</y>
     <style>0</style>
     <foreground_color>
-      <color red="0" green="0" blue="210" />
+      <color blue="192" green="0" name="Controller: FG" red="0" />
     </foreground_color>
     <actions hook="false" hook_all="false">
       <action type="WRITE_PV">
         <pv_name>$(pv_name)</pv_name>
         <value>1</value>
         <timeout>10</timeout>
-        <confirm_message></confirm_message>
-        <description></description>
+        <confirm_message />
+        <description />
       </action>
     </actions>
     <font>
@@ -566,20 +569,20 @@ $(pv_value)</tooltip>
     <visible>true</visible>
     <pv_name>$(PROCSERV):SHOWOUT</pv_name>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
-    <label></label>
+    <label />
     <widget_type>Menu Button</widget_type>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
-      <color name="Canvas" red="200" green="200" blue="200" />
+      <color blue="205" green="205" name="Controller: BG" red="205" />
     </background_color>
     <width>80</width>
     <x>665</x>
     <name>Menu Button</name>
     <y>47</y>
     <foreground_color>
-      <color red="0" green="0" blue="210" />
+      <color blue="192" green="0" name="Controller: FG" red="0" />
     </foreground_color>
     <font>
       <opifont.name fontName="Arial" height="11" style="0">Default</opifont.name>
@@ -587,7 +590,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <border_style>0</border_style>
-    <tooltip></tooltip>
+    <tooltip />
     <horizontal_alignment>1</horizontal_alignment>
     <rules />
     <enabled>true</enabled>
@@ -606,24 +609,25 @@ $(pv_value)</tooltip>
     <visible>true</visible>
     <vertical_alignment>1</vertical_alignment>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <widget_type>Label</widget_type>
     <wrap_words>false</wrap_words>
     <background_color>
-      <color red="255" green="255" blue="255" />
+      <color blue="200" green="200" name="Canvas" red="200" />
     </background_color>
     <width>120</width>
     <x>645</x>
     <name>Label_3</name>
     <y>18</y>
     <foreground_color>
-      <color red="0" green="0" blue="0" />
+      <color blue="0" green="0" name="Text: FG" red="0" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
       <opifont.name fontName="Arial" height="11" style="0">Default</opifont.name>
     </font>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
     <border_style>0</border_style>
@@ -655,7 +659,7 @@ $(pv_value)</tooltip>
     <pv_name>$(PROCSERV):IOCOUT</pv_name>
     <vertical_alignment>0</vertical_alignment>
     <border_color>
-      <color red="0" green="128" blue="255" />
+      <color blue="255" green="128" red="0" />
     </border_color>
     <precision_from_pv>true</precision_from_pv>
     <widget_type>Text Update</widget_type>
@@ -663,18 +667,18 @@ $(pv_value)</tooltip>
     <wrap_words>true</wrap_words>
     <format_type>4</format_type>
     <background_color>
-      <color red="64" green="64" blue="64" />
+      <color blue="64" green="64" name="Monitor: BG" red="64" />
     </background_color>
     <width>796</width>
     <x>5</x>
     <name>auto(readback|Pressure)_3</name>
     <y>80</y>
     <foreground_color>
-      <color red="100" green="255" blue="100" />
+      <color blue="96" green="255" name="Monitor: FG" red="96" />
     </foreground_color>
     <actions hook="false" hook_all="false" />
     <font>
-      <fontdata fontName="Nimbus Sans L" height="11" style="1" />
+      <opifont.name fontName="Arial" height="11" style="1">Default Bold</opifont.name>
     </font>
   </widget>
 </display>
