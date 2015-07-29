@@ -44,11 +44,14 @@ record(mbbi, "$(P):STATUS") {
   field(ZRST, "Running")
   field(ONST, "Shutdown")
   field(TWST, "procServ Stopped")
+  field(THST, "Invalid portname")  
 $(MANUALSTART=)  field(ONSV, "MAJOR")
   field(TWSV, "MAJOR")
+  field(THSV, "MAJOR")  
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
+  field(THVL, "3")  
 }
 
 #% archiver 10 Monitor

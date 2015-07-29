@@ -25,6 +25,7 @@ int status;                assign status        to "{P}:STATUS";
 #define RUNNING 0
 #define SHUTDOWN 1
 #define PROCSERVSTOPPED 2
+#define INVALIDPORTNAME 3
 char iocout[NELM];        assign iocout        to "{P}:IOCOUT";
 
 /* Commands */
@@ -191,15 +192,20 @@ static void createAsynUser(struct UserVar *pVar) {
     }
     /* Connect the port */
     asynUser *pasynUser = NULL;
-    pasynOctetSyncIO->connect(pVar->port, 0, &pasynUser, NULL);
-    pasynOctetSyncIO->setInputEos(pasynUser, "\r\n", 2);
-    pasynOctetSyncIO->setOutputEos(pasynUser, "", 0);
-    pasynUsers[pVar->stateIndex] = pasynUser;
-    /* Clear output lines */
-    for (i = 0; i < NLINES; i++) {
-        strcpy(pVar->iocLine[i], "");
+    if (pasynOctetSyncIO->connect(pVar->port, 0, &pasynUser, NULL)) {
+        /* Invalid port name, can't recover from this */
+        printf("***Error: can't connect to asyn port name %s\n", pVar->port);
+        pasynUser = NULL;
+    } else {
+        pasynOctetSyncIO->setInputEos(pasynUser, "\r\n", 2);
+        pasynOctetSyncIO->setOutputEos(pasynUser, "", 0);
+        pasynUsers[pVar->stateIndex] = pasynUser;
+        /* Clear output lines */
+        for (i = 0; i < NLINES; i++) {
+            strcpy(pVar->iocLine[i], "");
+        }
+        pVar->iocLineI = 0;
     }
-    pVar->iocLineI = 0;
 }
 
 /* Get the next line of IOC output and process it */
@@ -211,15 +217,25 @@ static void getNextLine(struct UserVar *pVar) {
     int i, index, yesNo;
 
     /* By default there is nothing to do on return */
-       pVar->lastcommand = NONE;
+    pVar->lastcommand = NONE;
 
     /* Check that asynUser exists */
     if (pVar->stateIndex >= NSTATEMACHINES) return;
     asynUser *pasynUser = pasynUsers[pVar->stateIndex];
-    if (pasynUser == NULL) return;
-
+    if (pasynUser == NULL) {
+        if (pVar->status == INVALIDPORTNAME) {
+            /* we can never recover, but at least we won't use all the CPU... */
+            sleep(1);
+        } else {
+            pVar->lastcommand = STATUS;
+            pVar->status = INVALIDPORTNAME;
+        }
+        return;
+    }
+    
     /* Check asynUser is connected */
     pasynManager->isConnected(pasynUser, &yesNo);
+    
     if (yesNo == 0) {
         if (pVar->status == PROCSERVSTOPPED) {
             sleep(1);
@@ -240,7 +256,7 @@ static void getNextLine(struct UserVar *pVar) {
 
     /* read from the asyn port, if we fail (no data) just return */
     if (pasynOctetSyncIO->read(pasynUser, buffer, LINELENGTH, 0.1, &bytes, &eomReason)) {
-        return;
+        sleep(0.1);
     }
 
     /* NULL terminate the buffer and put it in the right place */
