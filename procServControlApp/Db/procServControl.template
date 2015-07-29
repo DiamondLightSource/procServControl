@@ -13,7 +13,7 @@
 # This associates BOY screens with the template
 # Note this refers to the OPI for HW status in BLGui which uses
 # PVs from procserv and deviocstats
-# % gui, $(name=), boycomponent, procServControlApp_opi/procServControl.opi, P=$(P), name=$(name)
+# % gui, $(name=), boycomponent, procServControlApp_opi/procServControl.opi, P=$(P), name=$(name=)
 
 record(stringin, "$(P):IOCNAME") {
   field(DESC, "IOC Name")
