@@ -1,0 +1,10 @@
+# Common prefixes
+SUPPORT = /dls_sw/prod/R3.14.12.3/support
+WORK = /dls_sw/work/R3.14.12.3/support
+# Module definitions
+ASYN = $(SUPPORT)/asyn/4-21
+BUSY = $(SUPPORT)/busy/1-4dls1
+PROCSERVCONTROL = $(TOP)/../..
+SEQ = $(SUPPORT)/seq/2-1-15dls2
+# EPICS Base appears last
+EPICS_BASE = /dls_sw/epics/R3.14.12.3/base

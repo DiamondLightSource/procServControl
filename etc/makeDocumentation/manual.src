@@ -5,6 +5,21 @@ procServControl provides a template and state machine that monitors procServ
 to see what the status of the IOC is. For more details look at 
 procServControl.template
 
+\section auto_sec autoProcServControl
+This module also contains a DLS specific IOC autoProcServControl, that will
+scan a given soft-iocs file containing IOC names and port numbers, and create
+an IOC with a procServControl instance for each IOC. To use it, simply
+add a line line the following to the soft-iocs file (the port number can be
+any unused port)
+
+\verbatim
+autoProcServControl 7099
+\endverbatim
+
+This will run iocs/autoProcServControl/bin/linux-x86_64/stautoProcServControl.sh
+which creates a /tmp/stautoProcServControl.cmd containing the relevant startup
+script commands, and runs it.
+
 \section build_sec Build Instructions 
 - \subpage build_instructions_example
 
