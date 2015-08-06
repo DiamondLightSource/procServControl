@@ -6,19 +6,25 @@ to see what the status of the IOC is. For more details look at
 procServControl.template
 
 \section auto_sec autoProcServControl
-This module also contains a DLS specific IOC autoProcServControl, that will
-scan a given soft-iocs file containing IOC names and port numbers, and create
-an IOC with a procServControl instance for each IOC. To use it, simply
-add a line line the following to the soft-iocs file (the port number can be
-any unused port)
+This module also contains a DLS specific IOC autoProcServControl that has no 
+startup script, but instead has a bash script that will scan 
+\tt /dls_sw/prod/etc/init/$(hostname –s)/soft-iocs for IOC names and port 
+numbers, and create a startup script with a procServControl instance for each 
+IOC. To use it, simply add the following line to the \tt soft-iocs file 
+(the port number can be any unused port):
 
 \verbatim
 autoProcServControl 7099
 \endverbatim
 
-This will run iocs/autoProcServControl/bin/linux-x86_64/stautoProcServControl.sh
-which creates a /tmp/stautoProcServControl.cmd containing the relevant startup
-script commands, and runs it.
+Now when you do 
+
+\verbatim
+sudo /sbin/service epics-soft-iocs start autoProcServControl
+\endverbatim
+
+you will have PVs to control the procServ process of every soft IOC on that 
+machine.
 
 \section build_sec Build Instructions 
 - \subpage build_instructions_example
