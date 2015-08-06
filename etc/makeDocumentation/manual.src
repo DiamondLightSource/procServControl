@@ -8,9 +8,9 @@ procServControl.template
 \section auto_sec autoProcServControl
 This module also contains a DLS specific IOC autoProcServControl that has no 
 startup script, but instead has a bash script that will scan 
-\tt /dls_sw/prod/etc/init/$(hostname –s)/soft-iocs for IOC names and port 
+<tt>/dls_sw/prod/etc/init/$(hostname –s)/soft-iocs</tt> for IOC names and port 
 numbers, and create a startup script with a procServControl instance for each 
-IOC. To use it, simply add the following line to the \tt soft-iocs file 
+IOC. To use it, simply add the following line to the \c soft-iocs file 
 (the port number can be any unused port):
 
 \verbatim
