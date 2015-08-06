@@ -256,7 +256,7 @@ static void getNextLine(struct UserVar *pVar) {
 
     /* read from the asyn port, if we fail (no data) just return */
     if (pasynOctetSyncIO->read(pasynUser, buffer, LINELENGTH, 0.1, &bytes, &eomReason)) {
-        sleep(0.1);
+        return;
     }
 
     /* NULL terminate the buffer and put it in the right place */
