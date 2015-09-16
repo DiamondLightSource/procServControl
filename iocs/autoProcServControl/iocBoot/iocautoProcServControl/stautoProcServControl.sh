@@ -2,7 +2,9 @@
 # go to the bin/arch directory
 cd "$(dirname "$0")"
 # globals
-SOFTIOCS=/dls_sw/prod/etc/init/$(hostname -s)/soft-iocs
+INIT_ROOT=/dls_sw/prod/etc/init
+source $INIT_ROOT/functions
+SOFTIOCS=$(GetConfigDir $INIT_ROOT)/soft-iocs
 ST_FILE="/tmp/stautoProcServControl.cmd"
 TOP=$(cd ../..; pwd)
 PROCSERVCONTROL=$(cd ../../../..; pwd)
