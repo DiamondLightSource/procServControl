@@ -15,3 +15,7 @@ class procServControl(AutoSubstitution, Device):
 
     def PostIocInitialise(self):
         print 'seq(procServControl,"P=%(P)s")' % self.args
+
+class procServControlGui(AutoSubstitution):
+    TemplateFile = 'procServControlGui.template'
+    
