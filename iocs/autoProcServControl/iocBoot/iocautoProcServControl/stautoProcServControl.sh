@@ -41,7 +41,7 @@ if [ -s "$REALIOCS" ]; then
                     while read HOSTIOC HOSTPORT HOSTIOCARGS; do
                         if [ "$HOSTIOC" == "$IOC" -a "$PORT" == "$HOSTPORT" ]; then
                             cat <<EOF >> $ST_FILE
-drvAsynIPPortConfigure("${IOC}port", "localhost:${PORT}", 100, 0, 0)
+drvAsynIPPortConfigure("${IOC}port", "${HOST}:${PORT}", 100, 0, 0)
 dbLoadRecords "${PROCSERVCONTROL}/db/procServControl.template", "P=${IOC},PORT=${IOC}port"
 EOF
                         fi
