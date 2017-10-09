@@ -2,8 +2,9 @@
 # % macro, PORT, Asyn port name
 # % macro, SHOWOUT, Set this to 0 to disable the IOC output display
 # % macro, MANUALSTART, Set this to # if the IOC is manually started. This changes the severity of STATUS
+# % macro, DESCRIPTION, User-friendly description
 # % macro, name, Object and gui association name
-# % gui, $(name=), edm, procServControl.edl, procServ=$(P)
+# % gui, $(name=), edm, procServControl.edl, procServ=$(P), description=$(DESCRIPTION=$(P))
 # # \file
 # # This template allows monitoring of an IOC running through procServ in
 # # EPICS. It should be run in a separate IOC, but needs to be running on the

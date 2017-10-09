@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 286
-y 55
+x 288
+y 81
 w 733
 h 522
 font "arial-medium-r-18.0"
@@ -99,7 +99,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 0
 y 3
 w 735
@@ -109,7 +109,7 @@ fontAlign "center"
 fgColor index 14
 bgColor index 48
 value {
-  "procServ Control - $(procServ)"
+  "procServ Control - $(description)"
 }
 endObjectProperties
 
@@ -166,11 +166,11 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 5
 y 35
 w 48
-h 14
+h 13
 font "arial-medium-r-12.0"
 fontAlign "center"
 fgColor index 14
@@ -187,7 +187,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 315
 y 55
 w 100
@@ -314,7 +314,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 10
 y 55
 w 80
@@ -333,7 +333,7 @@ endObjectProperties
 object activeButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 490
 y 55
@@ -363,7 +363,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 10
 y 85
 w 80
@@ -400,7 +400,7 @@ endObjectProperties
 object activeButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 315
 y 85
@@ -428,7 +428,7 @@ endObjectProperties
 object activeButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 490
 y 85
@@ -456,7 +456,7 @@ endObjectProperties
 object activeButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 415
 y 85
@@ -524,7 +524,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 580
 y 55
 w 140
