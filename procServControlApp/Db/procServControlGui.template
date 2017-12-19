@@ -1,7 +1,6 @@
 # % macro, P, Device prefix
-# % macro, DESCRIPTION, User-friendly description
 # % macro, name, Object and gui association name
-# % gui, $(name=), edm, procServControl.edl, procServ=$(P), description=$(DESCRIPTION=$(P))
+# % gui, $(name=), edm, procServControl.edl, procServ=$(P)
 # # \file
 # # This template allows to create dls gui tags for auto proc serv control
 # # in the IOC that will be referenced in auto proc serv control
