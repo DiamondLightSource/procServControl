@@ -23,7 +23,7 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 SUPPORT=/dls_sw/prod/R3.14.12.3/support
 
 # If using the sequencer, point SNCSEQ at its top directory:
-SNCSEQ=$(SUPPORT)/seq/2-2-2
+SNCSEQ=$(SUPPORT)/seq/2-2-4
 ASYN=$(SUPPORT)/asyn/4-31
 BUSY=$(SUPPORT)/busy/1-6-1dls1
 
