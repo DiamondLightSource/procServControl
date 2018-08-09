@@ -28,7 +28,7 @@ $(TOP)/iocs/%: %.xml
 
 # General rule for building a Simulation IOC from an XML file
 $(TOP)/iocs/%_sim: %.xml
-	$(XMLBUILDER) $(DEBUG) --sim=linux-x86 $<
+	$(XMLBUILDER) $(DEBUG) --sim=linux-x86_64 $<
 
 # Alternate rule for building a Standard IOC from a python file
 $(TOP)/iocs/%: %.py
@@ -36,7 +36,7 @@ $(TOP)/iocs/%: %.py
 
 # Alternate rule for building a Simulation IOC from a python file
 $(TOP)/iocs/%_sim: %.py
-	./$< $(DEBUG) --sim=linux-x86 $*
+	./$< $(DEBUG) --sim=linux-x86_64 $*
 
 # Remove the generated iocs on clean
 clean:

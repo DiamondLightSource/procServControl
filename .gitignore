@@ -5,6 +5,8 @@ dbd
 db
 data
 lib
+documentation/doxygen
+iocs/example
 .svn*
 iocs/*IOC*
 .idea
