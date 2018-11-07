@@ -5,6 +5,6 @@ WORK = /dls_sw/work/R3.14.12.3/support
 ASYN = $(SUPPORT)/asyn/4-31
 BUSY = $(SUPPORT)/busy/1-6-1dls1
 PROCSERVCONTROL = $(TOP)/../..
-SEQ = $(SUPPORT)/seq/2-2-2
+SEQ = $(SUPPORT)/seq/2-2-4
 # EPICS Base appears last
 EPICS_BASE = /dls_sw/epics/R3.14.12.3/base
