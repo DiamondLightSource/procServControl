@@ -30,23 +30,15 @@ EOF
     done
 )
 
-# For each entry in real-iocs, check if the host listed exists in init, 
-# and check the IOC listed exists in the host's soft-iocs file.
-# If so, assume this is a Windows IOC running WinProcServ.
+# Check the real-iocs file for soft-iocs (Windows IOCs run through WinProcServ)
 if [ -s "$REALIOCS" ]; then
     sed '/^#/d;/^\s*$/d' "$REALIOCS" | (
         while read IOC HOST PORT IOCARGS; do
-            if [ -s $INIT_ROOT/$HOST/soft-iocs ]; then
-                sed '/^#/d;/^\s*$/d' $INIT_ROOT/$HOST/soft-iocs | (
-                    while read HOSTIOC HOSTPORT HOSTIOCARGS; do
-                        if [ "$HOSTIOC" == "$IOC" -a "$PORT" == "$HOSTPORT" ]; then
-                            cat <<EOF >> $ST_FILE
+            if [ "$IOCARGS" == "softioc" ]; then
+                cat <<EOF >> $ST_FILE
 drvAsynIPPortConfigure("${IOC}port", "${HOST}:${PORT}", 100, 0, 0)
 dbLoadRecords "${PROCSERVCONTROL}/db/procServControl.template", "P=${IOC},PORT=${IOC}port"
 EOF
-                        fi
-                    done
-                )
             fi
         done
     )
@@ -70,18 +62,12 @@ EOF
 if [ -s "$REALIOCS" ]; then
     sed '/^#/d;/^\s*$/d' "$REALIOCS" | (
         while read IOC HOST PORT IOCARGS; do
-            if [ -s $INIT_ROOT/$HOST/soft-iocs ]; then
-                sed '/^#/d;/^\s*$/d' $INIT_ROOT/$HOST/soft-iocs | (
-                    while read HOSTIOC HOSTPORT HOSTIOCARGS; do
-                        if [ "$HOSTIOC" == "$IOC" -a "$PORT" == "$HOSTPORT" ]; then
-                            cat <<EOF >> $ST_FILE
+        if [ "$IOCARGS" == "softioc" ]; then
+            cat <<EOF >> $ST_FILE
 seq(procServControl,"P=${IOC}")
 EOF
-                        fi
-                    done
-                )
-            fi
-        done
+        fi
+    done
     )
 fi
 
