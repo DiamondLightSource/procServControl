@@ -34,11 +34,24 @@ EOF
 if [ -s "$REALIOCS" ]; then
     sed '/^#/d;/^\s*$/d' "$REALIOCS" | (
         while read IOC HOST PORT IOCARGS; do
+            # softioc argument in column 4 provided
             if [ "$IOCARGS" == "softioc" ]; then
                 cat <<EOF >> $ST_FILE
 drvAsynIPPortConfigure("${IOC}port", "${HOST}:${PORT}", 100, 0, 0)
 dbLoadRecords "${PROCSERVCONTROL}/db/procServControl.template", "P=${IOC},PORT=${IOC}port"
 EOF
+            # Or we look for a soft-iocs entry in the Windows host
+            elif [ -s $INIT_ROOT/$HOST/soft-iocs ]; then
+                sed '/^#/d;/^\s*$/d' $INIT_ROOT/$HOST/soft-iocs | (
+                    while read HOSTIOC HOSTPORT HOSTIOCARGS; do
+                        if [ "$HOSTIOC" == "$IOC" -a "$PORT" == "$HOSTPORT" ]; then
+                            cat <<EOF >> $ST_FILE
+drvAsynIPPortConfigure("${IOC}port", "${HOST}:${PORT}", 100, 0, 0)
+dbLoadRecords "${PROCSERVCONTROL}/db/procServControl.template", "P=${IOC},PORT=${IOC}port"
+EOF
+                        fi
+                    done
+                )
             fi
         done
     )
@@ -62,12 +75,22 @@ EOF
 if [ -s "$REALIOCS" ]; then
     sed '/^#/d;/^\s*$/d' "$REALIOCS" | (
         while read IOC HOST PORT IOCARGS; do
-        if [ "$IOCARGS" == "softioc" ]; then
-            cat <<EOF >> $ST_FILE
+            if [ "$IOCARGS" == "softioc" ]; then
+                cat <<EOF >> $ST_FILE
 seq(procServControl,"P=${IOC}")
 EOF
-        fi
-    done
+            elif [ -s $INIT_ROOT/$HOST/soft-iocs ]; then
+                sed '/^#/d;/^\s*$/d' $INIT_ROOT/$HOST/soft-iocs | (
+                    while read HOSTIOC HOSTPORT HOSTIOCARGS; do
+                        if [ "$HOSTIOC" == "$IOC" -a "$PORT" == "$HOSTPORT" ]; then
+                            cat <<EOF >> $ST_FILE
+seq(procServControl,"P=${IOC}")
+EOF
+                        fi
+                    done
+                )
+            fi
+        done
     )
 fi
 
