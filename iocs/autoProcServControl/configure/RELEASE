@@ -2,8 +2,8 @@
 SUPPORT = /dls_sw/prod/R3.14.12.7/support
 WORK = /dls_sw/work/R3.14.12.7/support
 # Module definitions
-ASYN = $(SUPPORT)/asyn/4-33
-BUSY = $(SUPPORT)/busy/1-7
+ASYN = $(SUPPORT)/asyn/4-34
+BUSY = $(SUPPORT)/busy/1-7dls1
 PROCSERVCONTROL = $(TOP)/../..
 SEQ = $(SUPPORT)/seq/2-2-5
 # EPICS Base appears last
