@@ -44,7 +44,7 @@ EOF
             elif [ -s $INIT_ROOT/$HOST/soft-iocs ]; then
                 sed '/^#/d;/^\s*$/d' $INIT_ROOT/$HOST/soft-iocs | (
                     while read HOSTIOC HOSTPORT HOSTIOCARGS; do
-                        if [ "$HOSTIOC" == "$IOC" -a "$PORT" == "$HOSTPORT" ]; then
+                        if [ "${HOSTIOC,,}" == "${IOC,,}" -a "$PORT" == "$HOSTPORT" ]; then
                             cat <<EOF >> $ST_FILE
 drvAsynIPPortConfigure("${IOC}port", "${HOST}:${PORT}", 100, 0, 0)
 dbLoadRecords "${PROCSERVCONTROL}/db/procServControl.template", "P=${IOC},PORT=${IOC}port"
