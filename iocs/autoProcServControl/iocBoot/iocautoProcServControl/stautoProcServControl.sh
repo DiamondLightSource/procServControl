@@ -21,8 +21,9 @@ autoProcServControl_registerRecordDeviceDriver(pdbbase)
 EOF
 
 # IocInit
-echo iocInit >> $SEQ_FILE
-
+cat <<EOF > $SEQ_FILE
+iocInit
+EOF
 
 sed '/^#/d;/^\s*$/d' "$SOFTIOCS" | (
     while read IOC PORT IOCARGS; do
