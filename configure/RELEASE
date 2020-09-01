@@ -23,9 +23,9 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 SUPPORT=/dls_sw/prod/R3.14.12.7/support
 
 # If using the sequencer, point SNCSEQ at its top directory:
-SNCSEQ=$(SUPPORT)/seq/2-2-5
-ASYN=$(SUPPORT)/asyn/4-34
-BUSY=$(SUPPORT)/busy/1-7dls1
+SNCSEQ=$(SUPPORT)/seq/2-2-5dls1
+ASYN=$(SUPPORT)/asyn/4-37
+BUSY=$(SUPPORT)/busy/1-7-2dls2
 
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=/dls_sw/epics/R3.14.12.7/base
