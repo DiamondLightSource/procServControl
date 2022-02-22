@@ -37,10 +37,13 @@ diff -ur procServ-2.7.0/procServ.cc procServ-2.7.0-patched/procServ.cc
  int    killSig = SIGKILL;        // Kill signal (default: SIGKILL)
 ```
 
+- The sequencer support module (seq) is required. Any version will work.
+
 ## Example IOC startup
 
 ```bash
 dbLoadDatabase "dbd/autoProcServControl.dbd"
 drvAsynIPPortConfigure("IOC1port", "localhost:7001", 100, 0, 0)
-dbLoadRecords "${PROCSERVCONTROL}/db/procServControl.template", "P=PV_PREFIX,PORT=IOC1port"
+dbLoadRecords "${PROCSERVCONTROL}/db/procServControl.template", "P=PV_PREFIX, PORT=IOC1port"
+seq(procServControl, "P=PV_PREFIX")
 ```
